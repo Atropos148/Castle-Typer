@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://6vnxrso6c6p7"]
+
+[ext_resource type="Script" path="res://Scenes/castle.gd" id="1_avfg3"]
+
+[node name="Castle" type="Node2D" node_paths=PackedStringArray("last_character_label")]
+script = ExtResource("1_avfg3")
+last_character_label = NodePath("LastCharacterLabel")
+
+[node name="LastCharacterLabel" type="Label" parent="."]
+offset_left = 489.0
+offset_top = 142.0
+offset_right = 529.0
+offset_bottom = 165.0
+horizontal_alignment = 1
+vertical_alignment = 1
