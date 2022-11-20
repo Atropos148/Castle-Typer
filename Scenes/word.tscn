@@ -5,9 +5,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eqlxk"]
 
-[node name="Word" type="CharacterBody2D" node_paths=PackedStringArray("word_label") groups=["word"]]
+[node name="Word" type="CharacterBody2D" node_paths=PackedStringArray("word_label", "correct_letters_label") groups=["word"]]
 script = ExtResource("1_p7uf2")
 word_label = NodePath("PanelContainer/Label")
+correct_letters_label = NodePath("PanelContainer/CorrectLettersLabel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eqlxk")
@@ -25,5 +26,13 @@ offset_top = 10.0
 offset_right = 40.0
 offset_bottom = 36.0
 text = "test"
-horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CorrectLettersLabel" type="Label" parent="PanelContainer"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 40.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 vertical_alignment = 1
