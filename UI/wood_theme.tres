@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b2v1n2ce5pu4g"]
+
+[ext_resource type="Texture2D" uid="uid://bgn1vvtuvp2kx" path="res://buttonSquare_brown.png" id="1_4o46x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvxnd"]
+texture = ExtResource("1_4o46x")
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 10.0
+margin_bottom = 10.0
+region_rect = Rect2(0, 0, 45, 49)
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_nvxnd")

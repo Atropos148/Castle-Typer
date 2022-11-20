@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://di200wwra0viy"]
 
-[ext_resource type="Texture2D" uid="uid://bboln4anba5yf" path="res://medieval_tilesheet.png" id="1_6tlh5"]
+[ext_resource type="Texture2D" uid="uid://bboln4anba5yf" path="res://medieval_tilesheet.png" id="1_4u2ut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_083r7"]
-texture = ExtResource("1_6tlh5")
+texture = ExtResource("1_4u2ut")
 margins = Vector2i(32, 32)
 separation = Vector2i(32, 32)
 texture_region_size = Vector2i(64, 64)
@@ -14,6 +14,6 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_083r7")
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMapBuildings" type="TileMap"]
 tile_set = SubResource("TileSet_n5ghf")
 format = 2

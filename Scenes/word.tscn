@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsm3ms3io4kew"]
+
+[ext_resource type="Script" path="res://Scenes/word.gd" id="1_p7uf2"]
+[ext_resource type="Theme" uid="uid://b2v1n2ce5pu4g" path="res://UI/wood_theme.tres" id="2_gxeu3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eqlxk"]
+
+[node name="Word" type="CharacterBody2D" node_paths=PackedStringArray("word_label") groups=["word"]]
+script = ExtResource("1_p7uf2")
+word_label = NodePath("PanelContainer/Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eqlxk")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+theme = ExtResource("2_gxeu3")
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 36.0
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1

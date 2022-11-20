@@ -12,9 +12,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_class("InputEventKey"):
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.pressed == false:
 		var letter = OS.get_keycode_string(event.keycode)
-		print(letter)
 		last_character_label.text = letter
+		get_tree().call_group("word", "check_pressed_letter", letter)
 
