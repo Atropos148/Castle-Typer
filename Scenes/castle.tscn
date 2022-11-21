@@ -1,11 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://6vnxrso6c6p7"]
+[gd_scene load_steps=10 format=3 uid="uid://6vnxrso6c6p7"]
 
 [ext_resource type="Script" path="res://Scenes/castle.gd" id="1_avfg3"]
 [ext_resource type="PackedScene" uid="uid://dsm3ms3io4kew" path="res://Scenes/word.tscn" id="2_4r2yx"]
+[ext_resource type="PackedScene" uid="uid://xwshy5qrxgsd" path="res://tile_map_ground.tscn" id="3_r8dcj"]
+[ext_resource type="PackedScene" uid="uid://di200wwra0viy" path="res://tile_map_buildings.tscn" id="4_prgas"]
 
-[node name="Castle" type="Node2D" node_paths=PackedStringArray("last_character_label")]
+[sub_resource type="Curve2D" id="Curve2D_r8ssw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 97, -111, 0, 0, 0, 0, 84, 79, 0, 0, 0, 0, 105, 274, 0, 0, 0, 0, 80, 415, 0, 0, 0, 0, 99, 546, 0, 0, 0, 0, 257, 535, 0, 0, 0, 0, 388, 551, 0, 0, 0, 0, 540, 542, 0, 0, 0, 0, 556, 462, 0, 0, 0, 0, 549, 349)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_arfth"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 286, 745, 0, 0, 0, 0, 278, 626, 0, 0, 0, 0, 325, 545, 0, 0, 0, 0, 432, 533, 0, 0, 0, 0, 585, 569, 0, 0, 0, 0, 775, 535, 0, 0, 0, 0, 804, 444, 0, 0, 0, 0, 727, 372, 0, 0, 0, 0, 667, 294, 0, 0, 0, 0, 567, 323)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_7wody"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1267, 613, 0, 0, 0, 0, 1066, 468, 0, 0, 0, 0, 940, 548, 0, 0, 0, 0, 756, 589, 0, 0, 0, 0, 646, 483, 0, 0, 0, 0, 711, 404, 0, 0, 0, 0, 807, 463, 0, 0, 0, 0, 674, 581, 0, 0, 0, 0, 571, 475, 0, 0, 0, 0, 738, 356, 0, 0, 0, 0, 960, 332, 0, 0, 0, 0, 944, 189, 0, 0, 0, 0, 850, 148, 0, 0, 0, 0, 804, 230, 0, 0, 0, 0, 862, 290, 0, 0, 0, 0, 1024, 216, 0, 0, 0, 0, 865, 67, 0, 0, 0, 0, 673, 148, 0, 0, 0, 0, 557, 288)
+}
+point_count = 19
+
+[sub_resource type="Curve2D" id="Curve2D_817ah"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -183, 607, 0, 0, 0, 0, 47, 592, 0, 0, 0, 0, 193, 561, 0, 0, 0, 0, 420, 511, 0, 0, 0, 0, 343, 353, 0, 0, 0, 0, 284, 482, 0, 0, 0, 0, 128, 468, 0, 0, 0, 0, 63, 407, 0, 0, 0, 0, 62, 271, 0, 0, 0, 0, 170, 198, 0, 0, 0, 0, 227, 50, 0, 0, 0, 0, 82, 11, 0, 0, 0, 0, 24, 142, 0, 0, 0, 0, 265, 257, 0, 0, 0, 0, 514, 317)
+}
+point_count = 15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nejvb"]
+radius = 45.0
+
+[node name="Castle" type="Node2D" node_paths=PackedStringArray("last_character_label", "castle", "path_follow_top_enter", "path_follow_bottom_enter", "path_follow_left_enter", "path_follow_right_enter", "word_1", "word_2", "word_3", "word_4")]
 script = ExtResource("1_avfg3")
 last_character_label = NodePath("LastCharacterLabel")
+castle = NodePath("CastleArea")
+words_move_speed = 90.0
+path_follow_top_enter = NodePath("Paths/TopEnter/TopEnter")
+path_follow_bottom_enter = NodePath("Paths/BottomEnter/BottomEnter")
+path_follow_left_enter = NodePath("Paths/RightEnter/RightEnter")
+path_follow_right_enter = NodePath("Paths/LeftEnter/LeftEnter")
+word_1 = NodePath("Paths/TopEnter/TopEnter/Word")
+word_2 = NodePath("Paths/BottomEnter/BottomEnter/Word")
+word_3 = NodePath("Paths/RightEnter/RightEnter/Word")
+word_4 = NodePath("Paths/LeftEnter/LeftEnter/Word")
+
+[node name="TileMapGround" parent="." instance=ExtResource("3_r8dcj")]
+layer_0/tile_data = PackedInt32Array(327688, 65536, 0, 262152, 65536, 0, 393224, 524288, 2, 458760, 262144, 0, 524296, 327680, 2, 524295, 327680, 0, 524294, 327680, 0, 524293, 327680, 0, 524292, 458752, 0, 589828, 262144, 0, 655364, 262144, 0, 524291, 327680, 0, 524290, 327680, 0, 524289, 262144, 2, 458753, 262144, 0, 393217, 262144, 0, 327681, 262144, 0, 262145, 262144, 0, 196609, 262144, 0, 131073, 262144, 0, 65537, 262144, 0, 1, 262144, 0, -65535, 262144, 0, -131071, 262144, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 65536, 0, 16, 65536, 0, 17, 65536, 0, 18, 65536, 0, 720896, 65536, 0, 720897, 0, 0, 720898, 65536, 0, 720899, 65536, 0, 720900, 65536, 0, 720901, 65536, 0, 720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 655378, 65536, 0, 589842, 65536, 0, 524306, 65536, 0, 458770, 65536, 0, 393234, 65536, 0, 327698, 65536, 0, 262162, 65536, 0, 196626, 65536, 0, 131090, 65536, 0, 65554, 65536, 0, 0, 65536, 0, 65535, 65536, 0, 65534, 65536, 0, 131070, 65536, 0, 196606, 65536, 0, 262142, 0, 0, 327678, 0, 0, 393215, 65536, 0, 458751, 65536, 0, 524287, 65536, 0, 589823, 65536, 0, 655359, 0, 0, 720895, 0, 0, 786431, 65536, 0, 851967, 65536, 0, 917503, 65536, 0, 917502, 65536, 0, 851966, 65536, 0, 786430, 65536, 0, 720894, 65536, 0, 655358, 0, 0, 589822, 0, 0, 524286, 0, 0, 458750, 0, 0, 393214, 0, 0, 589826, 65536, 0, 589825, 65536, 0, 589824, 65536, 0, 524288, 65536, 0, 458752, 65536, 0, 393216, 65536, 0, 327680, 65536, 0, 262144, 65536, 0, 196608, 65536, 0, 131072, 65536, 0, 65536, 0, 0, 131071, 0, 0, 196607, 65536, 0, 262143, 65536, 0, 327679, 65536, 0, 655360, 0, 0, 655361, 0, 0, 655362, 65536, 0, 655363, 65536, 0, 589827, 65536, 0, 589832, 65536, 0, 589831, 65536, 0, 589830, 65536, 0, 589829, 65536, 0, 655365, 65536, 0, 655366, 65536, 0, 655367, 65536, 0, 655368, 65536, 0, 655369, 65536, 0, 589833, 65536, 0, 524297, 65536, 0, 458761, 65536, 0, 393225, 65536, 0, 327689, 65536, 0, 262153, 65536, 0, 196617, 65536, 0, 131081, 0, 0, 65545, 0, 0, 65544, 0, 0, 65543, 0, 0, 65542, 65536, 0, 65541, 65536, 0, 65540, 65536, 0, 65539, 65536, 0, 65538, 65536, 0, 131074, 65536, 0, 196610, 65536, 0, 262146, 65536, 0, 327682, 65536, 0, 393218, 65536, 0, 458754, 65536, 0, 458755, 65536, 0, 393219, 131072, 4, 327683, 65536, 0, 262147, 65536, 0, 196611, 65536, 0, 131075, 65536, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 131072, 4, 458756, 65536, 0, 458757, 65536, 0, 327685, 0, 0, 262149, 0, 0, 196613, 0, 0, 131077, 0, 0, 131078, 65536, 0, 196614, 65536, 0, 262150, 65536, 0, 327686, 65536, 0, 458758, 65536, 0, 458759, 65536, 0, 393223, 65536, 0, 327687, 65536, 0, 262151, 65536, 0, 196615, 65536, 0, 131079, 65536, 0, 131080, 65536, 0, 196616, 65536, 0, 65546, 0, 0, 131082, 65536, 0, 196618, 65536, 0, 262154, 65536, 0, 327690, 65536, 0, 393226, 65536, 0, 458762, 65536, 0, 524298, 65536, 0, 589834, 65536, 0, 655370, 65536, 0, 655371, 65536, 0, 589835, 65536, 0, 524299, 65536, 0, 458763, 0, 0, 393227, 0, 0, 327691, 0, 0, 262155, 65536, 0, 196619, 65536, 0, 131083, 65536, 0, 65547, 0, 0, 65548, 65536, 0, 131084, 65536, 0, 196620, 65536, 0, 262156, 0, 0, 327692, 0, 0, 393228, 65536, 0, 458764, 0, 0, 524300, 0, 0, 589836, 0, 0, 655372, 65536, 0, 655373, 65536, 0, 589837, 65536, 0, 524301, 0, 0, 458765, 65536, 0, 393229, 0, 0, 327693, 0, 0, 262157, 0, 0, 196621, 65536, 0, 131085, 65536, 0, 65549, 65536, 0, 65550, 0, 0, 131086, 65536, 0, 196622, 65536, 0, 262158, 65536, 0, 327694, 0, 0, 393230, 65536, 0, 458766, 65536, 0, 524302, 65536, 0, 589838, 65536, 0, 655374, 65536, 0, 655375, 65536, 0, 589839, 65536, 0, 524303, 65536, 0, 458767, 65536, 0, 393231, 65536, 0, 327695, 65536, 0, 262159, 65536, 0, 196623, 0, 0, 131087, 65536, 0, 65551, 65536, 0, 65552, 65536, 0, 131088, 65536, 0, 196624, 65536, 0, 262160, 65536, 0, 327696, 65536, 0, 393232, 65536, 0, 458768, 65536, 0, 524304, 65536, 0, 589840, 65536, 0, 655376, 65536, 0, 655377, 65536, 0, 589841, 65536, 0, 524305, 65536, 0, 458769, 65536, 0, 393233, 65536, 0, 327697, 65536, 0, 262161, 65536, 0, 196625, 65536, 0, 131089, 65536, 0, 65553, 65536, 0, 393222, 131072, 4, 393221, 131072, 4)
+
+[node name="TileMapBuildings" parent="." instance=ExtResource("4_prgas")]
+layer_0/tile_data = PackedInt32Array(327688, 1048577, 1, 262152, 1048577, 0, 458757, 983041, 2, 458763, 983041, 2, 196621, 983041, 2, 65538, 983041, 2)
 
 [node name="LastCharacterLabel" type="Label" parent="."]
 offset_left = 489.0
@@ -15,5 +60,65 @@ offset_bottom = 165.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Word" parent="." instance=ExtResource("2_4r2yx")]
-position = Vector2(308, 244)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(556, 355)
+current = true
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="TopEnter" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_r8ssw")
+
+[node name="TopEnter" type="PathFollow2D" parent="Paths/TopEnter"]
+position = Vector2(97, -111)
+rotation = 1.56775
+rotates = false
+
+[node name="Word" parent="Paths/TopEnter/TopEnter" instance=ExtResource("2_4r2yx")]
+rotation = -1.56775
+scale = Vector2(1, 1)
+
+[node name="BottomEnter" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_arfth")
+
+[node name="BottomEnter" type="PathFollow2D" parent="Paths/BottomEnter"]
+position = Vector2(286, 745)
+rotation = -1.63793
+rotates = false
+
+[node name="Word" parent="Paths/BottomEnter/BottomEnter" instance=ExtResource("2_4r2yx")]
+rotation = 1.63793
+scale = Vector2(1, 1)
+location = 1
+word = "enter"
+
+[node name="RightEnter" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_7wody")
+
+[node name="RightEnter" type="PathFollow2D" parent="Paths/RightEnter"]
+position = Vector2(1267, 613)
+rotates = false
+
+[node name="Word" parent="Paths/RightEnter/RightEnter" instance=ExtResource("2_4r2yx")]
+location = 2
+word = "radio"
+
+[node name="LeftEnter" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_817ah")
+
+[node name="LeftEnter" type="PathFollow2D" parent="Paths/LeftEnter"]
+position = Vector2(-183, 607)
+rotation = -0.0651451
+rotates = false
+
+[node name="Word" parent="Paths/LeftEnter/LeftEnter" instance=ExtResource("2_4r2yx")]
+location = 3
+word = "over"
+
+[node name="CastleArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CastleArea"]
+position = Vector2(543, 322)
+shape = SubResource("CircleShape2D_nejvb")
+
+[connection signal="body_entered" from="CastleArea" to="." method="_on_castle_area_body_entered"]

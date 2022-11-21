@@ -14,3 +14,12 @@ config/name="WGC_Typing"
 run/main_scene="res://Scenes/castle.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/per_pixel_transparency/allowed=true
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

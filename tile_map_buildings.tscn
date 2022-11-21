@@ -9,6 +9,7 @@ separation = Vector2i(32, 32)
 texture_region_size = Vector2i(64, 64)
 16:1/0 = 0
 16:0/0 = 0
+15:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_n5ghf"]
 tile_size = Vector2i(64, 64)

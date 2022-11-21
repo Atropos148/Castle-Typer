@@ -12,9 +12,13 @@ var next_letter_position: int = 0
 
 @export var word_label: Label
 @export var correct_letters_label: Label
+@export_enum("Top", "Bottom", "Right", "Left") var location: int = 0
+@export var word: String = "castle"
+
+signal completed_word
 
 func _ready() -> void:
-	set_assigned_word("castle")
+	set_assigned_word(word)
 
 func check_pressed_letter(pressed_letter: String):
 	if assigned_word[next_letter_position] == pressed_letter.to_lower():
@@ -22,7 +26,9 @@ func check_pressed_letter(pressed_letter: String):
 		if next_letter_position + 1 < assigned_word.length():
 			next_letter_position += 1
 		else:
-			queue_free()
+#			queue_free()
+			emit_signal("completed_word", self)
+
 	else:
 		print("wrong letter")
 		next_letter_position = 0
