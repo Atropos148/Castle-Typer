@@ -54,15 +54,14 @@ position = Vector2(0, 9)
 texture = ExtResource("2_dj4je")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = -25.0
-offset_top = -22.0
-offset_right = 25.0
-offset_bottom = 24.0
+offset_left = -35.0
+offset_top = -36.0
+offset_right = 37.0
+offset_bottom = 26.0
 size_flags_horizontal = 4
 theme = ExtResource("2_gxeu3")
 
 [node name="Label" type="Label" parent="PanelContainer"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 62.0
@@ -72,7 +71,6 @@ text = "test"
 vertical_alignment = 1
 
 [node name="CorrectLettersLabel" type="Label" parent="PanelContainer"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 11.0
 offset_right = 62.0

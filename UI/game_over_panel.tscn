@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctx7buwn2gdch"]
+
+[ext_resource type="Script" path="res://UI/game_over_panel.gd" id="1_tg7ve"]
+
+[node name="GameOverPanel" type="Control" node_paths=PackedStringArray("count_label", "button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_tg7ve")
+count_label = NodePath("PanelContainer/VBoxContainer/WordsCountLabel")
+button = NodePath("PanelContainer/VBoxContainer/Button")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+offset_right = 193.0
+offset_bottom = 144.0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+offset_right = 193.0
+offset_bottom = 26.0
+text = "Words got to your castle!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordsCountLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+offset_top = 36.0
+offset_right = 193.0
+offset_bottom = 62.0
+text = "You typed XX words!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+offset_top = 72.0
+offset_right = 193.0
+offset_bottom = 103.0
+text = "Play Again"
+
+[node name="Button_Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+offset_top = 113.0
+offset_right = 193.0
+offset_bottom = 144.0
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]

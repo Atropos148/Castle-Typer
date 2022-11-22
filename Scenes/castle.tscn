@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://6vnxrso6c6p7"]
+[gd_scene load_steps=11 format=3 uid="uid://6vnxrso6c6p7"]
 
 [ext_resource type="Script" path="res://Scenes/castle.gd" id="1_avfg3"]
 [ext_resource type="PackedScene" uid="uid://dsm3ms3io4kew" path="res://Scenes/word.tscn" id="2_4r2yx"]
 [ext_resource type="PackedScene" uid="uid://xwshy5qrxgsd" path="res://tile_map_ground.tscn" id="3_r8dcj"]
 [ext_resource type="PackedScene" uid="uid://di200wwra0viy" path="res://tile_map_buildings.tscn" id="4_prgas"]
+[ext_resource type="PackedScene" uid="uid://ctx7buwn2gdch" path="res://UI/game_over_panel.tscn" id="5_dt68u"]
 
 [sub_resource type="Curve2D" id="Curve2D_r8ssw"]
 _data = {
@@ -36,7 +37,6 @@ radius = 45.0
 script = ExtResource("1_avfg3")
 last_character_label = NodePath("LastCharacterLabel")
 castle = NodePath("CastleArea")
-words_move_speed = 80.0
 path_follow_top_enter = NodePath("Paths/TopEnter/TopEnter")
 path_follow_bottom_enter = NodePath("Paths/BottomEnter/BottomEnter")
 path_follow_left_enter = NodePath("Paths/RightEnter/RightEnter")
@@ -61,10 +61,6 @@ offset_bottom = 165.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(556, 355)
-current = true
-
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="TopEnter" type="Path2D" parent="Paths"]
@@ -74,6 +70,7 @@ curve = SubResource("Curve2D_r8ssw")
 position = Vector2(97, -111)
 rotation = 1.56775
 rotates = false
+lookahead = 1024.0
 
 [node name="Word" parent="Paths/TopEnter/TopEnter" instance=ExtResource("2_4r2yx")]
 rotation = -1.56775
@@ -85,6 +82,7 @@ curve = SubResource("Curve2D_arfth")
 position = Vector2(286, 745)
 rotation = -1.63793
 rotates = false
+lookahead = 1024.0
 
 [node name="Word" parent="Paths/BottomEnter/BottomEnter" instance=ExtResource("2_4r2yx")]
 rotation = 1.63793
@@ -96,6 +94,7 @@ curve = SubResource("Curve2D_7wody")
 [node name="RightEnter" type="PathFollow2D" parent="Paths/RightEnter"]
 position = Vector2(1267, 613)
 rotates = false
+lookahead = 1024.0
 
 [node name="Word" parent="Paths/RightEnter/RightEnter" instance=ExtResource("2_4r2yx")]
 location = 2
@@ -107,9 +106,22 @@ curve = SubResource("Curve2D_817ah")
 position = Vector2(-183, 607)
 rotation = -0.0651451
 rotates = false
+lookahead = 1024.0
 
 [node name="Word" parent="Paths/LeftEnter/LeftEnter" instance=ExtResource("2_4r2yx")]
 location = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(556, 355)
+current = true
+
+[node name="GameOverPanel" parent="Camera2D" instance=ExtResource("5_dt68u")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="CastleArea" type="Area2D" parent="."]
 
@@ -117,4 +129,5 @@ location = 3
 position = Vector2(543, 322)
 shape = SubResource("CircleShape2D_nejvb")
 
+[connection signal="restart_round" from="Camera2D/GameOverPanel" to="." method="_on_game_over_panel_restart_round"]
 [connection signal="body_entered" from="CastleArea" to="." method="_on_castle_area_body_entered"]

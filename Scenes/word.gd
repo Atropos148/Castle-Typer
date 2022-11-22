@@ -25,14 +25,13 @@ func check_pressed_letter(pressed_letter: String):
 		if next_letter_position + 1 < assigned_word.length():
 			next_letter_position += 1
 		else:
-#			queue_free()
 			emit_signal("completed_word", self)
 			set_random_word()
 			next_letter_position = 0
 			correct_letters_label.text = ""
 
-	else:
-		print("wrong letter")
+#	else:
+#		print("wrong letter")
 #		next_letter_position = 0
 #		correct_letters_label.text = ""
 
@@ -42,22 +41,3 @@ func set_assigned_word(word: String):
 
 func set_random_word():
 	set_assigned_word(WordChooser.get_random_word())
-
-#func _physics_process(delta: float) -> void:
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity.y += gravity * delta
-#
-#	# Handle Jump.
-#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
-#
-#	# Get the input direction and handle the movement/deceleration.
-#	# As good practice, you should replace UI actions with custom gameplay actions.
-#	var direction := Input.get_axis("ui_left", "ui_right")
-#	if direction:
-#		velocity.x = direction * SPEED
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-#	move_and_slide()

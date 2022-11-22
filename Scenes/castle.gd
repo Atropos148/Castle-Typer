@@ -1,11 +1,9 @@
 extends Node2D
 
-
 @export var last_character_label: Label
 @export var castle: Area2D
 
-
-@export_range(60, 120, 1.0, "suffix:speed") var words_move_speed = 60.0
+@export_range(60, 120, 1.0, "suffix:speed") var words_move_speed = 80.0
 
 @export_group("Path Follows", "path_follow_")
 @export var path_follow_top_enter: PathFollow2D
@@ -21,8 +19,11 @@ extends Node2D
 
 @onready var words: Array = [word_1, word_2, word_3, word_4]
 
+var completed_words: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Camera2D/GameOverPanel.hide()
 	for word in words:
 		word.completed_word.connect(reset_word)
 
@@ -41,13 +42,21 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _on_castle_area_body_entered(body: Node2D) -> void:
 	if body.has_method("set_assigned_word"):
-		print("game_end")
-#		body.queue_free()
+		$Camera2D/GameOverPanel.set_word_count_label(completed_words)
+		$Camera2D/GameOverPanel.show()
+		$Camera2D/GameOverPanel.focus_button()
 
 func reset_word(word_to_reset: CharacterBody2D):
-	print("reset")
+	completed_words += 1
+	if completed_words % 5 == 0:
+		words_move_speed += 5
+
 	match word_to_reset.location:
 		0: path_follow_top_enter.progress = 0
 		1: path_follow_bottom_enter.progress = 0
 		2: path_follow_left_enter.progress = 0
 		3: path_follow_right_enter.progress = 0
+
+
+func _on_game_over_panel_restart_round() -> void:
+	get_tree().reload_current_scene()
