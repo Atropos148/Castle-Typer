@@ -15,9 +15,14 @@ run/main_scene="res://Scenes/castle.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+WordChooser="*res://Scripts/word_chooser.gd"
+
 [display]
 
 window/per_pixel_transparency/allowed=true
+window/stretch/mode="viewport"
 
 [rendering]
 

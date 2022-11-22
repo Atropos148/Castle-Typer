@@ -13,12 +13,11 @@ var next_letter_position: int = 0
 @export var word_label: Label
 @export var correct_letters_label: Label
 @export_enum("Top", "Bottom", "Right", "Left") var location: int = 0
-@export var word: String = "castle"
 
 signal completed_word
 
 func _ready() -> void:
-	set_assigned_word(word)
+	set_random_word()
 
 func check_pressed_letter(pressed_letter: String):
 	if assigned_word[next_letter_position] == pressed_letter.to_lower():
@@ -28,15 +27,21 @@ func check_pressed_letter(pressed_letter: String):
 		else:
 #			queue_free()
 			emit_signal("completed_word", self)
+			set_random_word()
+			next_letter_position = 0
+			correct_letters_label.text = ""
 
 	else:
 		print("wrong letter")
-		next_letter_position = 0
-		correct_letters_label.text = ""
+#		next_letter_position = 0
+#		correct_letters_label.text = ""
 
 func set_assigned_word(word: String):
 	assigned_word = word
 	word_label.text = assigned_word
+
+func set_random_word():
+	set_assigned_word(WordChooser.get_random_word())
 
 #func _physics_process(delta: float) -> void:
 #	# Add the gravity.
