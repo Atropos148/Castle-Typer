@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b2v1n2ce5pu4g"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b2v1n2ce5pu4g"]
 
 [ext_resource type="Texture2D" uid="uid://bgn1vvtuvp2kx" path="res://buttonSquare_brown.png" id="1_4o46x"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xc83m"]
+color = Color(0.490196, 0.243137, 0.0392157, 1)
+thickness = 4
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvxnd"]
 texture = ExtResource("1_4o46x")
@@ -11,4 +15,5 @@ margin_bottom = 10.0
 region_rect = Rect2(0, 0, 45, 49)
 
 [resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_xc83m")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_nvxnd")

@@ -17,7 +17,13 @@ extends Node2D
 @export var word_3: CharacterBody2D
 @export var word_4: CharacterBody2D
 
+@export_group("Finish Sounds", "sound_")
+@export var sound_1: AudioStreamOggVorbis
+@export var sound_2: AudioStreamOggVorbis
+@export var sound_3: AudioStreamOggVorbis
+
 @onready var words: Array = [word_1, word_2, word_3, word_4]
+@onready var finish_sounds: Array = [sound_1, sound_2, sound_3]
 
 var completed_words: int = 0
 
@@ -48,6 +54,9 @@ func _on_castle_area_body_entered(body: Node2D) -> void:
 
 func reset_word(word_to_reset: CharacterBody2D):
 	completed_words += 1
+	var chosen_sound = finish_sounds[randi() % finish_sounds.size()]
+	$WordFinished.stream = chosen_sound
+	$WordFinished.play()
 	if completed_words % 5 == 0:
 		words_move_speed += 5
 

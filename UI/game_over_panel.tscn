@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctx7buwn2gdch"]
+[gd_scene load_steps=3 format=3 uid="uid://ctx7buwn2gdch"]
 
 [ext_resource type="Script" path="res://UI/game_over_panel.gd" id="1_tg7ve"]
+[ext_resource type="AudioStream" uid="uid://drj4srsurovn6" path="res://Sound/click1.ogg" id="2_3d8aj"]
 
 [node name="GameOverPanel" type="Control" node_paths=PackedStringArray("count_label", "button")]
 layout_mode = 3
@@ -60,5 +61,11 @@ offset_right = 193.0
 offset_bottom = 144.0
 text = "Quit"
 
+[node name="SoundEffects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3d8aj")
+bus = &"SFX"
+
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]

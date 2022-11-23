@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0h62tpxaquka"]
+[gd_scene load_steps=6 format=3 uid="uid://c0h62tpxaquka"]
 
 [ext_resource type="Theme" uid="uid://b2v1n2ce5pu4g" path="res://UI/wood_theme.tres" id="1_bgayg"]
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="2_2egdc"]
 [ext_resource type="PackedScene" uid="uid://xwshy5qrxgsd" path="res://tile_map_ground.tscn" id="2_sk5kp"]
+[ext_resource type="AudioStream" uid="uid://dgl66rx14crgs" path="res://Sound/Farm Frolics.ogg" id="4_7g4ot"]
+[ext_resource type="AudioStream" uid="uid://drj4srsurovn6" path="res://Sound/click1.ogg" id="5_vjeu8"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("credits_popup", "play_button")]
 layout_mode = 3
@@ -38,7 +40,7 @@ layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 391.0
-offset_bottom = 362.0
+offset_bottom = 541.0
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
@@ -72,29 +74,71 @@ offset_bottom = 352.0
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 362.0
+offset_right = 381.0
+offset_bottom = 366.0
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 376.0
+offset_right = 381.0
+offset_bottom = 407.0
+button_pressed = true
+text = "Music"
+alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 417.0
+offset_right = 381.0
+offset_bottom = 443.0
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 453.0
+offset_right = 381.0
+offset_bottom = 469.0
+tooltip_text = "Music Volume"
+min_value = -30.0
+max_value = 1.0
+value = -20.0
+rounded = true
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 479.0
+offset_right = 381.0
+offset_bottom = 505.0
+text = "Sound Effects Volume"
+horizontal_alignment = 1
+
+[node name="SoundsVolumeSlider" type="HSlider" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 515.0
+offset_right = 381.0
+offset_bottom = 531.0
+tooltip_text = "Music Volume"
+min_value = -30.0
+max_value = 5.0
+rounded = true
+
 [node name="PopupPanel" type="PopupPanel" parent="PanelContainer"]
-size = Vector2i(464, 320)
+size = Vector2i(464, 476)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/PopupPanel"]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 460.0
-offset_bottom = 316.0
-
-[node name="Label" type="Label" parent="PanelContainer/PopupPanel/VBoxContainer"]
-layout_mode = 2
-offset_right = 456.0
-offset_bottom = 114.0
-theme_override_font_sizes/font_size = 25
-text = "Sprites: 
-  Platformer Pack Medieval by Kenney
-  UI Adventure Pack by Kenney"
+offset_bottom = 472.0
 
 [node name="Label2" type="Label" parent="PanelContainer/PopupPanel/VBoxContainer"]
 layout_mode = 2
-offset_top = 118.0
 offset_right = 456.0
-offset_bottom = 194.0
+offset_bottom = 76.0
 theme_override_font_sizes/font_size = 25
 text = "Coding and Game Design: 
   @atropos148
@@ -102,14 +146,53 @@ text = "Coding and Game Design:
 
 [node name="Label3" type="Label" parent="PanelContainer/PopupPanel/VBoxContainer"]
 layout_mode = 2
-offset_top = 198.0
+offset_top = 80.0
 offset_right = 456.0
-offset_bottom = 312.0
+offset_bottom = 194.0
 theme_override_font_sizes/font_size = 25
 text = "Based on game idea from: 
   Weekly Gamedev Challenge Godot
     - Week 7: Typing Game"
 
+[node name="Label" type="Label" parent="PanelContainer/PopupPanel/VBoxContainer"]
+layout_mode = 2
+offset_top = 198.0
+offset_right = 456.0
+offset_bottom = 312.0
+theme_override_font_sizes/font_size = 25
+text = "Sprites: 
+  Platformer Pack Medieval by Kenney
+  UI Adventure Pack by Kenney"
+
+[node name="Label4" type="Label" parent="PanelContainer/PopupPanel/VBoxContainer"]
+layout_mode = 2
+offset_top = 316.0
+offset_right = 456.0
+offset_bottom = 468.0
+theme_override_font_sizes/font_size = 25
+text = "Sounds and Music: 
+  Music Loops by Kenney
+  UI Audio by Kenney
+  Folley Sounds by Kenney"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7g4ot")
+autoplay = true
+bus = &"Music"
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vjeu8")
+bus = &"SFX"
+
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/Button_Play" to="." method="_on_button_play_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/Button_Credits" to="." method="_on_button_credits_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button_Credits" to="." method="_on_button_credits_pressed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_focus_entered"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_focus_entered"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/SoundsVolumeSlider" to="." method="_on_sounds_volume_slider_focus_entered"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/SoundsVolumeSlider" to="." method="_on_sounds_volume_slider_value_changed"]

@@ -22,6 +22,13 @@ func focus_button():
 func _on_button_pressed() -> void:
 	emit_signal("restart_round")
 
-
 func _on_button_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_button_focus_entered() -> void:
+	$SoundEffects.play()
+
+
+func _on_button_quit_focus_entered() -> void:
+	$SoundEffects.play()
