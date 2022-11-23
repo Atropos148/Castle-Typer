@@ -52,6 +52,7 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 
 func _on_sounds_volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(2, value)
+	$SoundEffects.play()
 
 
 func _on_check_button_focus_entered() -> void:
